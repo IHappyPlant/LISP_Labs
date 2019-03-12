@@ -2,8 +2,8 @@
 ;Определите предикат, проверяющий, является ли аргумент одноуровневым списком.
 (defun check(lst)
 	(cond
-		((eq nil (atom (car lst))) "False")
-		((null lst) "True")
+		((null lst) t)
+		((eq nil (atom (car lst))) nil)
 		(t (check (cdr lst)))
 	)
 )
