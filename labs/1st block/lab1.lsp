@@ -4,7 +4,7 @@
 	(cond 
 		((null lst) nil)
 		(t (cond 
-			((= el (car lst)) (cons rep (iter el rep (cdr lst))))
+			((eq el (car lst)) (cons rep (iter el rep (cdr lst))))
 			(t (cons (car lst) (iter el rep (cdr lst)))))
 		)
 	)
