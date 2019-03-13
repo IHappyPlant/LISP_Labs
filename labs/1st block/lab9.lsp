@@ -28,3 +28,7 @@
 	(print(parents person2))
 	(siblings person1 person2)
 )
+
+;Тесты
+;(main `alex `anna `(helen sergey) `(victoria pavel))
+;(main `alex `anna `(helen sergey) `(helen sergey))
