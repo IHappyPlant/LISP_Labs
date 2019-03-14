@@ -3,7 +3,7 @@
 (defun check(lst)
 	(cond
 		((null lst) t)
-		((eq nil (atom (car lst))) nil)
+		((not (atom (car lst))) nil)
 		(t (check (cdr lst)))
 	)
 )
