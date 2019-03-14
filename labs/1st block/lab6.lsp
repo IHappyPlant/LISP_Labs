@@ -1,11 +1,14 @@
 ;Задача 28
 ;Определите функцию, вычисляющую, сколько всего атомов в списке (списочной структуре).
 (defun atom-count(lst)
-	(cond
-		((null lst) 0)
-		((atom (car lst)) (+ 1 (atom-count (cdr lst))))
-		(t (atom-count (cdr lst)))
-	)
+	((lambda (first rest) 
+		(cond
+			((null lst) 0)
+			((atom first) (+ 1 (atom-count rest)))
+			(t (atom-count rest))
+		)
+	)(car lst) (cdr lst))
+	
 )
 
 ;Тесты

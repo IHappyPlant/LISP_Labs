@@ -1,10 +1,12 @@
 ;Задача 26
 ;Определите функцию, разбивающую список (a b с d...) на пары ((а b) (с d)...).
 (defun split(lst)
-	(cond
-		((null (cddr lst)) (cons (list (car lst) (cadr lst)) (cddr lst)))
-		(t (cons (list (car lst) (cadr lst)) (split (cddr lst))))
-	)
+	((lambda (pair rest) 
+		(cond
+			((null rest) (cons pair rest))
+			(t (cons pair (split rest)))
+		)
+	) (list (car lst) (cadr lst)) (cddr lst))
 )
 
 ;Тесты

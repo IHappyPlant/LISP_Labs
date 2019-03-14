@@ -39,15 +39,15 @@
 Условие: Определите функцию, заменяющую в исходном списке все вхождения заданного значения другим.  
 Код:  
 ````
-(defun iter (el rep lst)
+(defun el-replace (el rep lst)
 	(cond 
 		((null lst) nil)
 		(t 
-			((lambda (h rest)
+			((lambda (first rest)
 				(cond 
-					((eq el h) (cons rep rest))
-					(t (cons h (iter el rep rest))))) 
-			(car lst) (iter el rep (cdr lst)))
+					((eq el first) (cons rep rest))
+					(t (cons first rest)))
+			) (car lst) (el-replace el rep (cdr lst)))
 		)
 	)
 )
@@ -86,10 +86,10 @@
 Код:  
 ````
 (defun remove-even(lst)
-	((lambda (head tail) 
+	((lambda (first rest) 
 		(cond
-			((null tail) (cons head tail))
-			(t (cons head (remove-even tail )))
+			((null rest) (cons first rest))
+			(t (cons first (remove-even rest )))
 		)
 		) (car lst) (cddr lst)
 	)
@@ -102,10 +102,12 @@
 Код:  
 ````
 (defun split(lst)
-	(cond
-		((null (cddr lst)) (cons (list (car lst) (cadr lst)) (cddr lst)))
-		(t (cons (list (car lst) (cadr lst)) (split (cddr lst))))
-	)
+	((lambda (pair rest) 
+		(cond
+			((null rest) (cons pair rest))
+			(t (cons pair (split rest)))
+		)
+	) (list (car lst) (cadr lst)) (cddr lst))
 )
 ````  
 Пример работы:  
@@ -115,11 +117,14 @@
 Код:  
 ````
 (defun atom-count(lst)
-	(cond
-		((null lst) 0)
-		((atom (car lst)) (+ 1 (atom-count (cdr lst))))
-		(t (atom-count (cdr lst)))
-	)
+	((lambda (first rest) 
+		(cond
+			((null lst) 0)
+			((atom first) (+ 1 (atom-count rest)))
+			(t (atom-count rest))
+		)
+	)(car lst) (cdr lst))
+	
 )
 ````  
 Пример работы:  

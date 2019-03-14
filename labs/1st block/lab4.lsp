@@ -1,10 +1,10 @@
 ;Задача 25
 ;Определите функцию, удаляющую из списка каждый четный элемент.
 (defun remove-even(lst)
-	((lambda (head tail) 
+	((lambda (first rest) 
 		(cond
-			((null tail) (cons head tail))
-			(t (cons head (remove-even tail )))
+			((null rest) (cons first rest))
+			(t (cons first (remove-even rest )))
 		)
 		) (car lst) (cddr lst)
 	)

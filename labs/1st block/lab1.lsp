@@ -1,20 +1,20 @@
 ;Задача 3
 ;Определите функцию, заменяющую в исходном списке все вхождения заданного значения другим.
-(defun iter (el rep lst)
+(defun el-replace (el rep lst)
 	(cond 
 		((null lst) nil)
 		(t 
-			((lambda (h rest)
+			((lambda (first rest)
 				(cond 
-					((eq el h) (cons rep rest))
-					(t (cons h (iter el rep rest))))) 
-			(car lst) (iter el rep (cdr lst)))
+					((eq el first) (cons rep rest))
+					(t (cons first rest)))
+			) (car lst) (el-replace el rep (cdr lst)))
 		)
 	)
 )
 
 ;Тесты
-;(iter 1 2 `(1 1 1))
-;(iter 1 2 `(2 2 2))
-;(iter 1 2 `(1 2 3))
-;(iter 1 2 `(3 4 5))
+;(el-replace 1 2 `(1 1 1))
+;(el-replace 1 2 `(2 2 2))
+;(el-replace 1 2 `(1 2 3))
+;(el-replace 1 2 `(3 4 5))
