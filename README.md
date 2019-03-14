@@ -82,10 +82,13 @@
 Условие: Определите функцию, удаляющую из списка каждый четный элемент.  
 Код:  
 ````
-(defun del(lst)
-	(cond
-		((null (cddr lst)) (cons (car lst) (cddr lst)))
-		(t (cons (car lst) (del (cddr lst) )))
+(defun remove-even(lst)
+	((lambda (head tail) 
+		(cond
+			((null tail) (cons head tail))
+			(t (cons head (remove-even tail )))
+		)
+		) (car lst) (cddr lst)
 	)
 )
 ````  
