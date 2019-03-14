@@ -3,9 +3,12 @@
 (defun iter (el rep lst)
 	(cond 
 		((null lst) nil)
-		(t ((lambda (h tail)(cond 
-			((eq el h) (cons rep (iter el rep tail)))
-			(t (cons h (iter el rep tail))))) (car lst) (cdr lst))
+		(t 
+			((lambda (h rest)
+				(cond 
+					((eq el h) (cons rep rest))
+					(t (cons h (iter el rep rest))))) 
+			(car lst) (iter el rep (cdr lst)))
 		)
 	)
 )
