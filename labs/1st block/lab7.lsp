@@ -17,18 +17,11 @@
 	)
 )
 
-(defun get-length(lst cnt)
-	(cond
-		((null lst) cnt)
-		(t (get-length (cdr lst) (+ cnt 1)))
-	)
-)
-
 (defun is-proper-subset(set1 set2)
 	(cond
 		((null set1) nil)
 		((is-subset set1 set2) (cond
-			((eq (get-length set1 0) (get-length set2 0)) nil)
+			((is-subset set2 set1) nil)
 			(t t)
 		))
 		(t nil)
