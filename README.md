@@ -17,7 +17,7 @@
 ### Задача 2  
 Условие: Определите функцию, возвращающую последние q элементов списка.  
 Код:  
-````
+```lsp
 (defun get-length(lst)
 	(cond
 		((null lst) 0)
@@ -32,13 +32,13 @@
 		(t (cut-list (cdr lst) q))
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.2.PNG)  
 ### Задача 3  
 Условие: Определите функцию, заменяющую в исходном списке все вхождения заданного значения другим.  
 Код:  
-````
+```lsp
 (defun el-replace (el rep lst)
 	(cond 
 		((null lst) nil)
@@ -51,26 +51,26 @@
 		)
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.3.PNG)  
 ### Задача 15  
 Условие: Определите функцию, вычисляющую скалярное произведение векторов, заданных списками целых чисел.  
 Код:  
-````
+```lsp
 (defun product (x y) 
 	(cond 
 		((null x) 0)
 		(t (+ (* (car x) (car y)) (product (cdr x) (cdr y))))
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.15.PNG)  
 ### Задача 18  
 Условие: Определите предикат, проверяющий, является ли аргумент одноуровневым списком.  
 Код:  
-````
+```lsp
 (defun check(lst)
 	(cond
 		((null lst) t)
@@ -78,13 +78,13 @@
 		(t (check (cdr lst)))
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.18.PNG)  
 ### Задача 25  
 Условие: Определите функцию, удаляющую из списка каждый четный элемент.  
 Код:  
-````
+```lsp
 (defun remove-even(lst)
 	((lambda (first rest) 
 		(cond
@@ -94,13 +94,13 @@
 		) (car lst) (cddr lst)
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.25.PNG)  
 ### Задача 26  
 Условие: Определите функцию, разбивающую список (a b с d...) на пары ((а b) (с d)...).  
 Код:  
-````
+```lsp
 (defun split(lst)
 	((lambda (pair rest) 
 		(cond
@@ -109,13 +109,13 @@
 		)
 	) (list (car lst) (cadr lst)) (cddr lst))
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.26.PNG)  
 ### Задача 28  
 Условие: Определите функцию, вычисляющую, сколько всего атомов в списке (списочной структуре).  
 Код:  
-````
+```lsp
 (defun atom-count(lst)
 	((lambda (first rest) 
 		(cond
@@ -126,14 +126,14 @@
 	)(car lst) (cdr lst))
 	
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.28.PNG)  
 ### Задача 35  
 Условие: Определите функцию ПОДМНОЖЕСТВО, которая проверяет, является ли одно множество подмножеством другого.  
 Определите также СОБСТВЕННОЕ-ПОДМНОЖЕСТВО.  
 Код:  
-````
+```lsp
 (defun is-member(el lst)
 	(cond
 		((null lst) nil)
@@ -160,14 +160,14 @@
 		(t nil)
 	)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.35.PNG)  
 ### Задача 45  
 Условие: Предположим, что у имени города есть свойства x и y, которые содержат координаты места нахождения города относительно некоторого начала координат.  
 Напишите функцию (расстояние a b) вычисляющую расстояние между городами a и b.  
 Код:  
-````
+```lsp
 (defun setprop(city-name x y)
 	(setf (get city-name `x) x)
 	(setf (get city-name `y) y)
@@ -186,14 +186,14 @@
 	(setprop city2 x2 y2)
 	(dist city1 city2)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.45.PNG)  
 ### Задача 46  
 Условие: Предположим, что отец и мать некоторого лица, хранятся как значения соответствующих свойств у символа, обозначающего это лицо.  
 Напишите функцию (родители x), которая возвращает в качестве значения родителей, и предикат (сестры-братья x1 x2), который истинен в случае, если x1 и x2 — сестры или братья, родные или с одним общим родителем.  
 Код:  
-````
+```lsp
 (defun setprop(person mother father)
 	(setf (get person `mother) mother)
 	(setf (get person `father) father)
@@ -218,7 +218,7 @@
 	(print(parents person2))
 	(siblings person1 person2)
 )
-````  
+```  
 Пример работы:  
 ![](https://github.com/IHappyPlant/LISP_Labs/blob/master/img/1.46.PNG)  
 [В начало](#специальные-языки-программирования)
