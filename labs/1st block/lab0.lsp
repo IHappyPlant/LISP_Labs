@@ -1,11 +1,14 @@
 ;Задача 2
 ;Определите функцию, возвращающую последний элемент списка
 (defun cut-list(lst)
-	(cond
-		((null lst) nil)
-		((null (cdr lst)) (car lst))
-		(t (cut-list (cdr lst)))
-	)
+	((lambda (first rest)
+		(cond
+			((null lst) nil)
+			((null rest) first)
+			(t (cut-list rest))
+		)
+	) (car lst) (cdr lst))
+		
 )
 
 ;Тесты
