@@ -20,11 +20,8 @@
 (defun is-proper-subset(set1 set2)
 	(cond
 		((null set1) nil)
-		((is-subset set1 set2) (cond
-			((is-subset set2 set1) nil)
-			(t t)
-		))
-		(t nil)
+		((and (is-subset set1 set2) (is-subset set2 set1)) nil) 
+		(t t)
 	)
 )
 
