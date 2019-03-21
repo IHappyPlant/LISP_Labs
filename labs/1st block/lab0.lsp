@@ -1,20 +1,13 @@
 ;Задача 2
-;Определите функцию, возвращающую последние q элементов списка
-(defun get-length(lst)
-	(cond
-		((null lst) 0)
-		(t (+ 1 (get-length (cdr lst))))
-	)
-)
-
-(defun cut-list(lst q)
+;Определите функцию, возвращающую последний элемент списка
+(defun cut-list(lst)
 	(cond
 		((null lst) nil)
-		((eq (get-length lst) q) lst)
-		(t (cut-list (cdr lst) q))
+		((null (cdr lst)) (car lst))
+		(t (cut-list (cdr lst)))
 	)
 )
 
 ;Тесты
-;(cut-list `(1 2 3 4 5) 2)
-;(cut-list `(1 2 3 4 5) 5)
+;(cut-list `(1 2 3 4 5)) ; 5
+
