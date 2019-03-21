@@ -4,31 +4,40 @@
 ;Напишите функцию (родители x), которая возвращает в качестве значения родителей, 
 ;и предикат (сестры-братья x1 x2), который истинен в случае, если x1 и x2 — сестры или братья, 
 ;родные или с одним общим родителем.
-(defun setprop(person mother father)
+
+(defun mother(person)
+	(get person `mother)
+)
+
+(defun father(person)
+	(get person `father)
+)
+
+(defun set-parents(person mother father)
 	(setf (get person `mother) mother)
 	(setf (get person `father) father)
 )
 
-(defun parents(person)
-	(list (get person `mother) (get person `father))
+(defun get-parents(person)
+	(list (mother person) (father person))
 )
 
 (defun siblings(person1 person2)
 	(cond
-		((eq (get person1 `mother) (get person2 `mother)) t)
-		((eq (get person1 `father) (get person2 `father)) t)
+		((eq (mother person1) (mother person2)) t)
+		((eq (father person1) (father person2)) t)
 		(t nil)
 	)
 )
 
 (defun main(person1 person2 parents1 parents2)
-	(setprop person1 (car parents1) (cadr parents1))
-	(setprop person2 (car parents2) (cadr parents2))
-	(print(parents person1))
-	(print(parents person2))
-	(siblings person1 person2)
+	(set-parents person1 (car parents1) (cadr parents1))
+	(set-parents person2 (car parents2) (cadr parents2))
+	(print(get-parents person1))
+	(print(get-parents person2))
+	(print(siblings person1 person2))
 )
 
 ;Тесты
-;(main `alex `anna `(helen sergey) `(victoria pavel))
-;(main `alex `anna `(helen sergey) `(helen sergey))
+;(main `alex `anna `(helen sergey) `(victoria pavel)) ; (HELEN SERGEY) (VICTORIA PAVEL) NIL 
+;(main `alex `anna `(helen sergey) `(helen sergey)) ; (HELEN SERGEY) (HELEN SERGEY) T 
