@@ -1,5 +1,5 @@
 ;Применение symbol-function элемента к его же sybmol-value
-(defun f (&rest (args '(1)))
+(defun f (&rest args)
     (mapcar #'(lambda (el) (+ el 4)) args)
 )
 
