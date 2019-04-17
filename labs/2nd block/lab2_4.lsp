@@ -3,11 +3,13 @@
 ;когда, являющейся функциональным аргументом предикат "пред" истинен для всех элементов списка "список".
 
 (defun forall-true (pred lst)
-	(cond
-		((null lst) t)
-		((funcall pred (car lst)) (every pred (cdr lst)))
-		(t nil)
-	)
+	((lambda (first rest)
+		(cond
+			((null rest) (funcall pred first))
+			((funcall pred first) (forall-true pred rest))
+			(t nil)
+		)
+	)(car lst) (cdr lst))
 )
 
 ;Тесты
