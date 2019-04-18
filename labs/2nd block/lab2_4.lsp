@@ -3,7 +3,7 @@
 ;когда, являющейся функциональным аргументом предикат "пред" истинен для всех элементов списка "список".
 
 (defun forall-true (pred lst)
-	(if (not (null(mapcan #'(lambda (el) (if (funcall pred el) nil (list t))) lst))) nil t)
+	(null(mapcan #'(lambda (el) (if (funcall pred el) nil (list t))) lst))
 )
 
 ;Тесты
