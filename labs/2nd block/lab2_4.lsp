@@ -15,3 +15,11 @@
 ;Тесты
 ;(forall-true 'atom '(1 2 3)) ;T
 ;(forall-true 'atom '(1 (2) 3)) ;NIL
+
+(defun forall-true (pred lst)
+	(mapcan #'(lambda (el) (funcall pred el)) lst)
+)
+
+;Тесты
+;(print(forall-true 'atom '(1 2 3))) ;T
+;(print(forall-true 'atom '(1 (2) 3))) ;T
