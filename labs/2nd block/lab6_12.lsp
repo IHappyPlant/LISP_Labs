@@ -1,8 +1,10 @@
 ;Определите функцию, которая возвращает в качестве значения свой вызов
 
 (defun self (arg)
-	(function self (lambda () (eval arg)))
+	(list 'self arg)
 )
 
 ;Тесты
-;(self 1) ;#<FUNCTION SELF NIL (EVAL ARG)>
+;(self 2) ;(SELF 2)
+;(self 10) ;(SELF 10)
+;(self '(1 2 3)) ;(SELF (1 2 3)) 
