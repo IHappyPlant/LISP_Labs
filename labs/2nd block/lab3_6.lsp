@@ -3,13 +3,7 @@
 ;которые обладают свойством, наличие которого проверяет предикат "пред".
 
 (defun rem-if (pred lst)
-	((lambda (first rest)
-		(cond
-			((null lst) nil)
-			((funcall pred (symbol-plist first)) (rem-if pred rest))
-			(t (cons first (rem-if pred rest)))
-		)
-	)(car lst) (cdr lst))
+	(mapcan #'(lambda (el) (if (funcall pred (symbol-plist el)) nil (list el))) lst)
 )
 
 (defun find-prop-in-list (prop-list)
