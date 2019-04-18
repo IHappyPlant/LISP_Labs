@@ -17,9 +17,9 @@
 ;(forall-true 'atom '(1 (2) 3)) ;NIL
 
 (defun forall-true (pred lst)
-	(mapcan #'(lambda (el) (funcall pred el)) lst)
+	(mapcan #'(lambda (el) (if (funcall pred el) t (list nil))) lst)
 )
 
 ;Тесты
-;(print(forall-true 'atom '(1 2 3))) ;T
-;(print(forall-true 'atom '(1 (2) 3))) ;T
+;(forall-true 'atom '(1 2 3)) ;T
+;(forall-true 'atom '(1 (2) 3)) ;(NIL . T) 
