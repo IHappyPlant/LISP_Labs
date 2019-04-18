@@ -3,23 +3,9 @@
 ;когда, являющейся функциональным аргументом предикат "пред" истинен для всех элементов списка "список".
 
 (defun forall-true (pred lst)
-	((lambda (first rest)
-		(cond
-			((null rest) (funcall pred first))
-			((funcall pred first) (forall-true pred rest))
-			(t nil)
-		)
-	)(car lst) (cdr lst))
+	(if (not (null(mapcan #'(lambda (el) (if (funcall pred el) nil (list t))) lst))) nil t)
 )
 
 ;Тесты
 ;(forall-true 'atom '(1 2 3)) ;T
 ;(forall-true 'atom '(1 (2) 3)) ;NIL
-
-(defun forall-true (pred lst)
-	(mapcan #'(lambda (el) (if (funcall pred el) t (list nil))) lst)
-)
-
-;Тесты
-;(forall-true 'atom '(1 2 3)) ;T
-;(forall-true 'atom '(1 (2) 3)) ;(NIL . T) 
